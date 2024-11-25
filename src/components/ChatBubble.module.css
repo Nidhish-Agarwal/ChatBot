@@ -15,9 +15,11 @@
     height: auto;
     word-wrap: break-word;
     white-space: pre-wrap;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-.chat_box > p{
+.chat_box > div{
     margin: 0;
     word-wrap: break-word;
 }

@@ -2,7 +2,14 @@ import React from 'react'
 import styles from './NavigationPanel.module.css'
 import logo from '../assets/Logo.png'
 
-export default function NavigationPanel() {
+export default function NavigationPanel(props) {
+
+  const clearChat = () => {
+    localStorage.removeItem('responses');
+    props.setResponses([])
+
+  }
+
   return (
     <div className={styles.main_container}>
         <div className={styles.heading}>
@@ -21,7 +28,7 @@ export default function NavigationPanel() {
         </div>
 
         <div className={styles.bottom_panel}>
-
+          <button onClick={clearChat}>clear chat</button>
         </div>
     </div>
   )

@@ -6,6 +6,7 @@ import ChatSpace from './components/ChatSpace'
 function App() {
   const [count, setCount] = useState(0)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
+  const [responses, setResponses] = useState(JSON.parse(localStorage.getItem('responses') || '[]'))
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,9 +25,9 @@ function App() {
 
     <div className={styles.cover_main_container}>
       <div className={styles.main_container}>
-        {!isMobile && <NavigationPanel />}
+        {!isMobile && <NavigationPanel responses = {responses} setResponses = {setResponses} />}
         
-        <ChatSpace />
+        <ChatSpace responses = {responses} setResponses = {setResponses}/>
 
 
       </div>

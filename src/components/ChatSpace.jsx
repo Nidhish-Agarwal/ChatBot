@@ -1,15 +1,17 @@
-import React , {useState, useEffect} from 'react';
+import React , {useState, useEffect, useRef} from 'react';
 import styles from './ChatSpace.module.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import ChatBubble from './ChatBubble';
 
-export default function ChatSpace() {
-
+export default function ChatSpace(props) {
+  const responses = props.responses;
+  const setResponses = props.setResponses;
 
   const [userInput, setUserInput] = useState('');
-  const [responses, setResponses] = useState([])
+
   const [isListening, setIsListening] = useState(false);
   const [recognition, setRecognition] = useState(null);
+  const chatAreaRef = useRef();
 
   useEffect(() => {
     // Check if SpeechRecognition API is supported
@@ -35,8 +37,6 @@ export default function ChatSpace() {
         }
 
         // Update the transcript state
-        console.log(finalTranscript);
-        console.log(interimTranscript);
         setUserInput(finalTranscript + interimTranscript);
       };
 
@@ -64,33 +64,56 @@ export default function ChatSpace() {
     } else {
 
       recognition.start();
-      console.log(userInput)
     }
     setIsListening(!isListening);
   };
 
+  useEffect(()=>{
+    scrollToBottom();
+  },[responses])
 
 
 
+
+
+  const scrollToBottom = () => {
+    if(chatAreaRef.current){
+      chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+    }
+  }
   
   async function textGenTextOnlyPrompt() {
-    setResponses((prevResponses) => [...prevResponses, ''])
+    // setResponses((prevResponses) => [...prevResponses, ''])
+
+    setResponses((prevResponses) => {
+      const updatedResponses = [...prevResponses, ''];
+      localStorage.setItem('responses', JSON.stringify(updatedResponses)); // Save after adding an empty response
+      return updatedResponses;
+  });
+
+
+
     const genAI = new GoogleGenerativeAI('AIzaSyBrfXssUntW_mvrOtPuoGo8MjH4AuSSYXU');
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   
 
+    setUserInput('');
     const result = await model.generateContentStream(userInput);
 
     // Print text as it comes in.
     for await (const chunk of result.stream) {
       const chunkText = chunk.text();
-      setResponses((prevResponses)=>(
-        prevResponses.map((content, index) => (
+      setResponses((prevResponses)=>{
+        const updatedResponse = prevResponses.map((content, index) => (
           index === prevResponses.length-1? content + chunkText: content
         ))
-      ))
+
+        localStorage.setItem('responses', JSON.stringify(responses));
+
+        return updatedResponse
+      })
     }
-    setUserInput('');
+    
   }
 
   
@@ -100,10 +123,14 @@ export default function ChatSpace() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInput)
     if(userInput !== ''){
+      if(isListening){
+        recognition.stop();
+        setIsListening(false);
+      }
       setResponses(prevResponses => [...prevResponses, userInput])
       textGenTextOnlyPrompt();
+      
     }
   }
 
@@ -114,7 +141,7 @@ export default function ChatSpace() {
       </div>
 
       <div className={styles.chat_container}>
-        <div className={styles.chat_area}>
+        <div ref = {chatAreaRef} className={styles.chat_area}>
           {responses.map((curr, index) => (
             <ChatBubble key = {index} type = {index%2==0? 'user':'bot'} message = {curr}/>
           ))}
