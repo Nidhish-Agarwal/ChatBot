@@ -14,5 +14,6 @@
     width: 96vw;
     height: 93vh;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 2vw;
 }
