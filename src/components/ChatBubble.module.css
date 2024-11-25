@@ -1,0 +1,33 @@
+.main_container{
+    border: 1px solid black;
+    border-radius: 10px;
+    max-width: 60%;
+}
+
+.chat_box{
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    max-width: 100%;
+    min-width: 8rem;
+    width: auto;
+    height: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.chat_box > p{
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.user{
+    background-color: #FCE9E8;
+    align-self: flex-end;
+}
+
+.bot{
+    background-color: #D5DBE8;
+    align-self: flex-start;
+}

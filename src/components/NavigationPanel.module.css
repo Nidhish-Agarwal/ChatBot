@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
+
+.main_container{
+    width: 28.3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.heading{
+    height: 15%;
+    border-bottom: 1.5px solid rgba(101, 101, 101, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.h1{
+    color: white;
+    font-family: "Londrina Solid";
+    font-size: 4vw;
+    margin-left: 1vw;
+}
+
+.logo{
+    height: 3vw;
+    width: auto;
+}
+
+.navigation_panel{
+    height: 60%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.bottom_panel{
+    height: 15%;
+    /* border:1px solid black; */
+}
+
+.navigation_option{
+    border-radius: 10px;
+    /* min-height: 6vh; */
+    height: 15%;    
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.active_option{
+    background-color: hsl(43, 100%, 50%);
+    color: #0E1D45;
+}
+
+.option_h2{
+    font-family: "Poppins";
+    font-size: clamp(0.7rem,100%,1.5vw);
+    margin-left: 1vw;
+    font-weight: 600;
+}
+
+.option_logo{
+    min-width: 0.7rem;
+    width: 2vw;
+    height: auto;
+    margin-left: 2vw;
+    fill: #ffffff;
+}
+
+.active_option .option_logo path{
+    fill: #0E1D45;
+}

@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.cover_main_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0E1D45;
+}
+
+.main_container{
+    width: 96vw;
+    height: 93vh;
+    display: flex;
+    justify-content: space-between;
+}
