@@ -15,7 +15,7 @@
     height: auto;
     word-wrap: break-word;
     white-space: pre-wrap;
-    overflow-x: hidden;
+    overflow-x: auto;
     box-sizing: border-box;
 }
 

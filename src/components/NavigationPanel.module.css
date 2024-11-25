@@ -48,6 +48,16 @@
     display: flex;
     align-items: center;
     color: white;
+    cursor: pointer;
+}
+
+.delete_option{
+    border-radius: 10px;
+    height: 50%;    
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
 }
 
 .active_option{
