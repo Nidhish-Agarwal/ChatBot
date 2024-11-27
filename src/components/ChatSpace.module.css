@@ -16,7 +16,8 @@
 
 .h1{
     font-family: "Poppins";
-    font-size: clamp(1rem,1.5vw,1.5vw);
+    /* font-size: clamp(1.5rem,1.5vw,1.5vw); */
+    font-size: 1.5rem;
     margin-left: 2vw;
 }
 
@@ -107,4 +108,19 @@
 .submit_button > svg{
     /* height: auto; */
     width: 70%;
+}
+
+.overlay{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: fixed;
+
+}
+
+@media (max-width: 586px){
+    .h1{
+        cursor: pointer;
+    }
 }

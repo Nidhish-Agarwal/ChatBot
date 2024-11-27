@@ -2,12 +2,16 @@ import React , {useState, useEffect, useRef} from 'react';
 import styles from './ChatSpace.module.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import ChatBubble from './ChatBubble';
+import NavigationPanel from './NavigationPanel';
+
 
 export default function ChatSpace(props) {
   const responses = props.responses;
   const setResponses = props.setResponses;
+  const isMobile = props.isMobile;
 
   const [userInput, setUserInput] = useState('');
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const [isListening, setIsListening] = useState(false);
   const [recognition, setRecognition] = useState(null);
@@ -135,10 +139,18 @@ export default function ChatSpace(props) {
     }
   }
 
+  const toggleNavigation = () => {
+    if(isMobile){
+      setIsNavOpen(prevValue => !prevValue);
+    }
+  }
+
   return (
     <div className={styles.main_container}>
+      {isMobile && isNavOpen && <div className={styles.overlay} onClick={toggleNavigation}></div>}
+      {isMobile && isNavOpen && <NavigationPanel />}
       <div className={styles.heading}>
-        <h1 className={styles.h1}>Chat Generator</h1>
+        <h1 onClick={toggleNavigation} className={styles.h1}>Chat Generator</h1>
       </div>
 
       <div className={styles.chat_container}>

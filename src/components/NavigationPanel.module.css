@@ -83,3 +83,32 @@
 .active_option .option_logo path{
     fill: #0E1D45;
 }
+
+
+@media (max-width: 586px) {
+    .main_container{
+        background-color: #0E1D45;
+        position: fixed;
+        height: 100%;
+        width: 70%;
+        padding: 4vw;
+    }
+    .option_h2{
+        font-size: clamp(1rem,2rem,3vw);
+        margin-left: 2vw;
+    }
+    .option_logo{
+        width: 4vw;
+        margin-left: 4vw;
+    }
+
+    .h1{
+        font-size: 12vw;
+        /* font-size: clamp(5vw, 20vw,5rem); */
+        margin-left: 2vw;
+    }
+
+    .logo{
+        height: 9vw;
+    }
+}
