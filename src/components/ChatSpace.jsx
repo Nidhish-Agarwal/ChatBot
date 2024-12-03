@@ -148,7 +148,7 @@ export default function ChatSpace(props) {
   return (
     <div className={styles.main_container}>
       {isMobile && isNavOpen && <div className={styles.overlay} onClick={toggleNavigation}></div>}
-      {isMobile && isNavOpen && <NavigationPanel />}
+      {isMobile && isNavOpen && <NavigationPanel  responses = {responses} setResponses = {setResponses}/>}
       <div className={styles.heading}>
         <h1 onClick={toggleNavigation} className={styles.h1}>Chat Generator</h1>
       </div>

@@ -122,5 +122,6 @@
 @media (max-width: 586px){
     .h1{
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 }
